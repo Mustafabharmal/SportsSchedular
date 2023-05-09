@@ -4,83 +4,66 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New session</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sports Scheduler | Change Password</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" integrity="sha512-+JZJZJzJZJzJZJzJZJZJZJzJZJZJzJZJZJZJZJzJZJZJzJZJZJZJZJzJZJZJzJZJZJzJZJzJZJZJzJZJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
-  <body>
-    <div class="grid grid-cols-6 h-screen">
-      <div class="col-span-2 col-start-3 flex flex-col justify-center items-center">
-        <% include('header.ejs') %>
-    
-        <form action="/editsportsession/<%=id%>" method="POST" class="py-4">
- 
-          <div class="py-2">
-            <label for="email" class="text-gray-700 font-bold block pb-2">Where will the session happen</label>
-            <input
-              value="<%=venue%>"
-              class="border border-gray-300 rounded p-2 w-full text-gray-900"
-              type="text"
-              name="venue"
-            />
+  <body class="bg-gray-100">
+    <nav class="bg-purple-500 text-white py-4 px-8 fixed top-0 w-full">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="/home" class="font-bold text-lg">Home</a>
+      </div>
+    </nav>
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+        <div class="md:flex">
+          <div class="w-full px-4 py-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Change Password</h2>
+            <form action="/passwordchange" method="post">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="oldpassword">
+                  Old Password
+                </label>
+                <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="oldpassword"
+                  type="password"
+                  name="oldpassword"
+                  placeholder="Enter old password"
+                />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="newpassword">
+                  New Password
+                </label>
+                <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="newpassword"
+                  type="password"
+                  name="newpassword"
+                  placeholder="Enter new password"
+                />
+              </div>
+              <div class="flex items-center justify-center">
+                <button
+                  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+            <% if(messages && messages.error && messages.error.length> 0) { %>
+              <% for(var i=0; i<messages.error.length; i++) { %>
+                <p class="text-red-500 mt-2">
+                  <%= messages.error[i] %>
+                </p>
+              <% } %>
+            <% } %>
           </div>
-    
-          <div class="py-2">
-            <label for="when" class="text-gray-700 font-bold block pb-2">When (please enter time only HH:30 or HH:00 only)</label>
-            <input
-              class="border border-gray-300 rounded p-2 w-full text-gray-900"
-              type="datetime-local"
-              step="1800"
-              name="when"
-              value="<%= (when) %>"
-              onfocus="setAllowedMinutes(this)"
-              min="${new Date().toISOString().slice(0, 16)}"
-            />
-          </div>
-    
-          <div class="py-2">
-            <label for="requiredteammembers" class="text-gray-700 font-bold block pb-2">How many more players do you need more</label>
-            <input
-              class="border border-gray-300 rounded p-2 w-full text-gray-900"
-              type="number"
-              name="requiredteammembers"
-              value="<%=count%>"
-              max="100"
-            />
-          </div>
-    
-          <div class="py-2">
-            <button
-              class="text-green-600 rounded text-white bg-green-600 hover:bg-green-800 font-medium px-5 py-2"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-    
-        <% if(messages && messages.error && messages.error.length> 0) { %>
-        <ul class="list-disc list-inside text-red-500">
-          <% for(var i=0; i<messages.error.length; i++) { %>
-          <li><%= messages.error[i] %></li>
-          <% } %>
-        </ul>
-        <% } %>
+        </div>
       </div>
     </div>
-    
-    
-    <script>
-      function setAllowedMinutes(input) {
-        const date = new Date(input.value);
-        const minutes = date.getMinutes();
-        const minuteOptions = input.querySelectorAll("option");
-        for (const option of minuteOptions) {
-          const minute = parseInt(option.value, 10);
-          option.disabled = minute !== 0 && minute !== 30;
-        }
-      }
-    </script>
   </body>
 </html>
