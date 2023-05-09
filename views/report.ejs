@@ -4,105 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Sports Report</title>
+   
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        font-size: 16px;
-      }
-
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Montserrat", sans-serif;
-        font-weight: bold;
-      }
-
-      p {
-        font-size: 18px;
-        line-height: 1.5;
-        margin-bottom: 20px;
-      }
-
-      ul {
-        margin-bottom: 20px;
-      }
-
-      li {
-        font-size: 16px;
-        line-height: 1.5;
-        margin-bottom: 10px;
-      }
-
-      a {
-        color: #555;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: background-color 0.2s ease;
-      }
-
-      a:hover {
-        background-color: #555;
-        color: #fff;
-      }
-
-      .bg-purple {
-        background-color: #8b5cf6;
-      }
-
-      .bg-red {
-        background-color: #ef4444;
-      }
-
-      .bg-green {
-        background-color: #10b981;
-      }
-
-      .text-purple {
-        color: #8b5cf6;
-      }
-
-      .text-red {
-        color: #ef4444;
-      }
-
-      .text-green {
-        color: #10b981;
-      }
-    </style>
   </head>
 
-  <body class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-    <nav class="py-4 px-8 bg-purple-500 text-white w-full fixed top-0 z-10">
-      <ul class="flex justify-between items-center">
-        <li>
-          <a href="/home" class="font-bold text-lg">Home</a>
-        </li>
-        <li>
-          <a href="/sport" class="font-bold text-lg">Back</a>
-        </li>
-      </ul>
+  <body class="bg-gray-100">
+    <nav class="bg-purple-500 text-white py-4 px-8">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="/home" class="text-lg font-bold">Home</a>
+        <a href="/sport" class="text-lg font-bold">Back</a>
+      </div>
     </nav>
-    <div class="container w-3/6 h-screen px-6 py-8 bg-white rounded-lg shadow-lg mt-16 overflow-y-scroll">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 class="text-4xl font-bold mb-4 text-purple-600">
         Relative Popularity of Sports
       </h1>
       <form action="/adminreport" method="post" class="mb-8">
-         
-        <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label for="startdate" class="block text-gray-700 font-bold mb-2">
               From Date
@@ -127,14 +46,14 @@
               class="w-full px-4 py-2 rounded-lg border border-gray-400 focus:outline-none focus:border-purple-500"
             />
           </div>
-          <div>
-            <button
-              type="submit"
-              class="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white rounded-lg focus:outline-none focus:shadow-outline-purple"
-            >
-              Search
-            </button>
-          </div>
+        </div>
+        <div class="mt-4">
+          <button
+            type="submit"
+            class="py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white rounded-lg focus:outline-none focus:shadow-outline-purple"
+          >
+            Search
+          </button>
         </div>
       </form>
     
