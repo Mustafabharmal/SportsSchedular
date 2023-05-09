@@ -27,7 +27,7 @@ module.exports = {
       {
         name: "wdcoach",
         email: "wdcoach@gmail.com",
-        password: hashedPasswords[1],
+        password: hashedPasswords[2],
         role: "admin",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -35,7 +35,7 @@ module.exports = {
       {
         name: "testadmin",
         email: "testadmin@gmail.com",
-        password: hashedPasswords[2],
+        password: hashedPasswords[3],
         role: "admin",
         createdAt: new Date(),
         updatedAt: new Date(),
