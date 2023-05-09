@@ -15,7 +15,6 @@ const session = require("express-session");
 const { Op } = sequelize;
 
 const app = express();
-require('dotenv').config();
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser("Complete WD201 DSA and Assignments"));
