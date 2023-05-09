@@ -7,25 +7,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Document</title>
+  <title>Dashboard</title>
 
   <style>
-    .navup {
+    .nav-link {
       color: #fff;
-   
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-  }
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+    }
   
-  .navup:hover {
-    background-color: #555;
-    color: #fff;
-  }
+    .nav-link:hover {
+      background-color: #555;
+      color: #fff;
+    }
 
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 1;
+      background-color: #fff;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-item {
+      color: #000;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f1f1f1;
+    }
   </style>
 </head>
 
@@ -33,21 +62,21 @@
   <nav class="py-4 px-8 bg-purple-500 fixed text-white w-full fixed top-0">
     <ul class="flex justify-between items-center">
       <li>
-        <a href="/home" class=" navup font-bold text-lg">Home</a>
+        <a href="/home" class="nav-link font-bold text-lg">Home</a>
       </li>
   
-      <li class="relative">
-        <button class=" navup font-bold text-lg" id="options-menu-button">Options</button>
-        <ul class="absolute top-full left-0 bg-white border border-gray-200 p-4 rounded-md shadow-lg z-50 opacity-0 invisible transition-opacity duration-200" id="options-menu">
-          <li><a class="block py-2 text-blue-600 hover:text-blue-800" href="/changepassword">Change Password</a></li>
-          <li><a class="block py-2 text-blue-600 hover:text-blue-800" href="/signout">Sign Out</a></li>
-        </ul>
+      <li class="dropdown">
+        <button class="nav-link font-bold text-lg">Options</button>
+        <div class="dropdown-content">
+          <a href="/changepassword" class="dropdown-item">Change Password</a>
+          <a href="/signout" class="dropdown-item">Sign Out</a>
+        </div>
       </li>
       
     </ul>
   </nav>
-  <div class="bg-white rounded-lg mt-5000 shadow-lg p-12 w-6/12">
-    <h3 class="text-3xl font-bold mb-4">Hi <%=name%>!</h3>
+  <div class="bg-white rounded-lg mt-8 shadow-lg p-12 w-6/12">
+    <h3 class="text-3xl font-bold mb-4">Welcome <%=name%>!</h3>
     <% if (admin) { %>
     <a class="block text-blue-600 text-lg mb-2" href="/sport/new">Create a new sport</a>
     <a class="block text-blue-600 text-lg mb-4" href="/adminreport">View reports</a>
@@ -101,35 +130,23 @@
     <% } %>
   </div>
   <script>
-    const optionsMenuButton = document.getElementById('options-menu-button');
-    const optionsMenu = document.getElementById('options-menu');
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
     
-    optionsMenuButton.addEventListener('mouseover', () => {
-      optionsMenu.classList.remove('invisible');
-      optionsMenu.classList.add('visible');
-      optionsMenu.classList.remove('opacity-0');
-      optionsMenu.classList.add('opacity-100');
+    dropdown.addEventListener('mouseover', () => {
+      dropdownContent.style.display = 'block';
     });
   
-    optionsMenuButton.addEventListener('mouseout', () => {
-      optionsMenu.classList.remove('visible');
-      optionsMenu.classList.add('invisible');
-      optionsMenu.classList.remove('opacity-100');
-      optionsMenu.classList.add('opacity-0');
+    dropdown.addEventListener('mouseout', () => {
+      dropdownContent.style.display = 'none';
     });
   
-    optionsMenu.addEventListener('mouseover', () => {
-      optionsMenu.classList.remove('invisible');
-      optionsMenu.classList.add('visible');
-      optionsMenu.classList.remove('opacity-0');
-      optionsMenu.classList.add('opacity-100');
+    dropdownContent.addEventListener('mouseover', () => {
+      dropdownContent.style.display = 'block';
     });
   
-    optionsMenu.addEventListener('mouseout', () => {
-      optionsMenu.classList.remove('visible');
-      optionsMenu.classList.add('invisible');
-      optionsMenu.classList.remove('opacity-100');
-      optionsMenu.classList.add('opacity-0');
+    dropdownContent.addEventListener('mouseout', () => {
+      dropdownContent.style.display = 'none';
     });
   </script>
 </body>
