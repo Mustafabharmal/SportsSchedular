@@ -18,7 +18,6 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser("Complete WD201 DSA and Assignments"));
-app.use(csrf('123453747imamsecret987654321book', ['POST', 'PUT', 'DELETE']));
 
 app.use(
   session({
