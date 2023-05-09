@@ -4,35 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sports Scheduler</title>
+    <title>Cancel Session</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" integrity="sha512-+JZJZJzJZJzJZJzJZJZJZJzJZJZJzJZJZJZJZJzJZJZJzJZJZJZJZJzJZJZJzJZJZJZJZJzJZJzJZJZJzJZJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
-  <body>
-    <div class="grid grid-cols-6">
-      <div class="col-span-2 col-start-3">
-        <h6 class="py-4">Cancel Session</h6>
-        <form action="/cancelsession/<%=sid%>" method="post">
- 
-          <div class="py-3">
-            <label for="email">Reason for cancelling the Session</label>
-            <input
-              class="border border-gray-300 rounded p-2 w-full text-gray-900"
-              type="text"
-              name="reason"
-            />
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+        <div class="md:flex">
+          <div class="w-full px-4 py-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Cancel Session</h2>
+            <form action="/cancelsession/<%=sid%>" method="post">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="reason">
+                  Reason for cancelling the session
+                </label>
+                <input
+                  class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="reason"
+                  type="text"
+                  name="reason"
+                  placeholder="Enter reason here"
+                />
+              </div>
+              <div class="flex items-center justify-center">
+                <button
+                  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
-
-          <div class="py-3">
-            <button
-              class="text-green-600 rounded text-white bg-green-600 hover:bg-green-800 font-medium px-5 py-2"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </body>
