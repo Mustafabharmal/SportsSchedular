@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-
 const bodyParser = require("body-parser");
 const path = require("path");
 const moment = require("moment-timezone");
@@ -8,7 +5,6 @@ const moment = require("moment-timezone");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-// var csrf = require("tiny-csrf");
 const cookieParser = require("cookie-parser");
 const connectEnsureLogin = require("connect-ensure-login");
 const bcrypt = require("bcrypt");
@@ -23,17 +19,14 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser("Complete WD201 DSA and Assignments"));
-//app.use(csrf("123453747imamsecret987654321book", ["POST", "PUT", "DELETE"]));
 
 app.use(
   session({
     secret: "ho-doper-secret-api-1248512542345",
-
     resave: false,
     saveUninitialized: false,
-
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000, //24hrs
+      maxAge: 24 * 60 * 60 * 1000,
     },
   })
 );
@@ -97,8 +90,6 @@ app.use((req, res, next) => {
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
-
-// Define your routes here
 
 app.get("/signup", async (req, res) => {
   res.render("signup" );
@@ -173,7 +164,6 @@ app.get("/home", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
     sports,
     admin: isAdmin,
     joinedUpcoming,
-    
   });
 });
 
@@ -213,10 +203,6 @@ app.post('/passwordchange', connectEnsureLogin.ensureLoggedIn(), async (req, res
   }
 
 });
-
-
-
-
 
 app.get("/sport/:id", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
   const id = req.params.id;
@@ -506,12 +492,10 @@ app.post(
         })
       ),
     ]);
-
     const sesplayers = await SessionPlayer.findAll({
       where: { sessionId: sessionDetails.id },
     });
     const sport = await Sport.findByPk(id);
-
     res.redirect(`/sessionpage/${sessionDetails.id}`);
   }
 );
@@ -530,14 +514,9 @@ app.post(
       playername: req.user.name,
       userId: req.user.id,
     });
-
     res.send("hi");
   }
 );
-
-// app.get("/sportsession",connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
-//   res.render()
-// });
 
 app.delete(
   "/leave-session",
@@ -556,8 +535,7 @@ app.delete(
         sessionId: sid,
       },
     });
-
-    res.send("hi");
+    res.send("hehe");
   }
 );
 
@@ -579,19 +557,13 @@ app.get(
         where: { userId, sessionId: sessionDetails.id },
       })
     );
-
     const currentDate = new Date();
     currentDate.setHours(currentDate.getHours() + 1);
     currentDate.setMinutes(currentDate.getMinutes());
-
     let previouSession = sessionDetails.when < currentDate;
-
     console.log(previouSession);
-
     console.log(sessionDetails.when);
-
     console.log(formatDateToDB(currentDate));
-
     res.render("session", {
       sport: sport.sportname,
       sessionId: sessionDetails.id,
@@ -632,7 +604,6 @@ app.get(
     }
   }
 );
-
 app.get(
   "/sessioncreate/:id",
   connectEnsureLogin.ensureLoggedIn(),
@@ -640,7 +611,6 @@ app.get(
     res.render("newsession", { id: req.params.id });
   }
 );
-
 app.post(
   "/session",
   passport.authenticate("local", {
@@ -649,5 +619,4 @@ app.post(
   }),
   (req, res) => res.redirect("/home")
 );
-
 module.exports = app;
